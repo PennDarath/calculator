@@ -4,26 +4,45 @@ import { Howl } from 'howler'
 
 
 function App() {
-  var sound = new Howl({
-  src: ['/public/Untitled.mp3'],
-  volume: 0.5,
-});
 
+  const fksound = () => {
+    var sound = new Howl({
+    src: ['/public/Untitled.mp3'],
+    volume: 0.5,
+  });
+  return sound.play();
+}
+  const fartsound = async () => {
+    var sound = new Howl({
+   src: ['/public/flow.wav'],
+    volume: 0.5,
+  });
+  return sound.play();
+}
+  const fartblowsound = () => {
+    var sound = new Howl({
+      src: ["/public/blow.wav"],
+    volume: 0.5,
+  });
+  return sound.play();
+}
+const clear = () => setResult("");
 
   const [result, setResult] = useState('')
-  const handleClick = (e) => {
+  const handleClickFart = (e) => {
     setResult(result.concat(e.target.id))
-    sound.play();
+    fartsound();
   }
-  const clear = () => setResult("")
   const deleteEl = () => setResult(result.slice(0,-1))
 
   const calculate = () => {
     try {
       setResult(eval(result).toString())
     } catch(error) {
-      setResult("Error")
+      setResult("fuck u bitch ");
+      fksound();
     }
+     fartblowsound()
   }
   return (
     <div className='flex justify-center items-center h-screen w-screen bg-slate-900'>
@@ -34,37 +53,37 @@ function App() {
       <div className=''>
 
         <div className='flex justify-between mb-3'> 
-        <button className='px-[18px] py-1 bg-red-500 rounded-lg w-14 font-bold text-lg border-2 hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={clear}>AC</button>
-        <button className='px-[18px] py-1 bg-gray-100 rounded-lg w-14 font-bold text-lg border-2 border-black hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={deleteEl}>DE</button>
-        <button id='.' className='px-[18px] py-1 bg-gray-100 rounded-lg w-14 font-bold text-lg border-2 border-black hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>.</button>
-        <button id='/' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>/</button>
+        <button className='px-[18px] py-1 bg-red-500 rounded-lg w-14 font-bold text-lg border-2 hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={()=> {clear(); fartsound()}}>AC</button>
+        <button className='px-[18px] py-1 bg-gray-100 rounded-lg w-14 font-bold text-lg border-2 border-black hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={()=> {deleteEl(); fartsound()}}>DE</button>
+        <button id='.' className='px-[18px] py-1 bg-gray-100 rounded-lg w-14 font-bold text-lg border-2 border-black hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>.</button>
+        <button id='/' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>/</button>
         </div>
 
         <div className='flex justify-between mb-3'>
-        <button id='7' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>7</button>
-        <button id='8' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>8</button>
-        <button id='9' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>9</button>
-        <button id='*' className='px-[18px] bg-blue-700 text-white rounded-lg w-14  font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>*</button>
+        <button id='7' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>7</button>
+        <button id='8' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>8</button>
+        <button id='9' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>9</button>
+        <button id='*' className='px-[18px] bg-blue-700 text-white rounded-lg w-14  font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>*</button>
         </div>
 
         <div className='flex justify-between mb-3'>
-        <button id='4' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>4</button>
-        <button id='5' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>5</button>
-        <button id='6' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>6</button>
-        <button id='+' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>+</button>
+        <button id='4' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>4</button>
+        <button id='5' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>5</button>
+        <button id='6' className='px-[18px] py-1 bg-black text-white border-2  rounded-lg w-14 font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>6</button>
+        <button id='+' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>+</button>
         </div>
 
         <div className='flex justify-between mb-3'>
-        <button id='1' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>1</button>
-        <button id='2' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>2</button>
-        <button id='3' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>3</button>
-        <button id='-' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClick}>-</button>
+        <button id='1' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>1</button>
+        <button id='2' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>2</button>
+        <button id='3' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14  font-bold text-lg hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>3</button>
+        <button id='-' className='px-[18px] py-1 bg-blue-700 text-white rounded-lg w-14 font-bold text-xl border-2 border-white hover:scale-125 duration-300' style={{fontFamily: "monospace"}} onClick={handleClickFart}>-</button>
         </div>
 
         <div className='flex justify-between mb-3'>
-        <button id='0' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg  w-14 font-bold text-lg hover:scale-125 duration-300' disabled={!result} onClick={handleClick}>0</button>
-        <button id='00' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14 font-bold text-lg flex justify-center hover:scale-125 duration-300' disabled={!result} onClick={handleClick}>00</button>
-        <button className='px-[18px] py-1 bg-gray-100 rounded-lg w-[123px] font-bold text-lg border-2 border-black hover:scale-125 duration-300'  onClick={!result ? '' : calculate}>=</button>
+        <button id='0' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg  w-14 font-bold text-lg hover:scale-125 duration-300' disabled={!result} onClick={handleClickFart}>0</button>
+        <button id='00' className='px-[18px] py-1 bg-black text-white border-2 rounded-lg w-14 font-bold text-lg flex justify-center hover:scale-125 duration-300' disabled={!result} onClick={handleClickFart}>00</button>
+        <button className='px-[18px] py-1 bg-gray-100 rounded-lg w-[123px] font-bold text-lg border-2 border-black hover:scale-125 duration-300'  onClick={!result ? '' : calculate} >=</button>
         </div>
 
       </div>
