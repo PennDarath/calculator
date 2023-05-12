@@ -7,21 +7,21 @@ function App() {
 
   const fksound = () => {
     var sound = new Howl({
-    src: ['/public/Untitled.mp3'],
+    src: ['/assets/Untitled.mp3'],
     volume: 0.5,
   });
   return sound.play();
 }
   const fartsound = async () => {
     var sound = new Howl({
-   src: ['/public/flow.wav'],
+   src: ['/assets/flow.wav'],
     volume: 0.5,
   });
   return sound.play();
 }
   const fartblowsound = () => {
     var sound = new Howl({
-      src: ["/public/blow.wav"],
+      src: ["/assets/blow.wav"],
     volume: 0.5,
   });
   return sound.play();
